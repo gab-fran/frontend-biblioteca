@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+--cor-principal: #8B2C2C;         /* Vinho profundo - elegante e marcante */
+--cor-background: #FFF8F0;        /* Bege claro - suave e confortável para leitura */
+--cor-destaque: #F4A261;          /* Laranja queimado - ótimo para botões e chamadas */
+--cor-cabecalho-tabela: #A94438;  /* Vermelho terroso - destaca bem sem agredir os olhos */
+--cor-corpo-tabela: #FFFFFF;      /* Branco - mantém clareza e contraste */
+--cor-hover-botao: #E76F51;       /* Coral vibrante - efeito visual agradável ao passar o mouse */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+body {
+    background-color: var(--cor-background);
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--cor-principal);
+    height: 70px;
+}
+
+.cabecalho a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    /* AUMENTA A FONTE EM 20% DO TAMANHO PADRÃO DO NAVEGADOR */
+}

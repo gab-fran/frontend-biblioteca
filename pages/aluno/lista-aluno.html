@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/listagens.css">
+    <title>BiblioTech - Lista de Alunos</title>
+</head>
+<body onload="montarTabelaAlunos()">
+     <header class="cabecalho">
+        <a href="/index.html">ÍNICIO</a>
+        <a href="/pages/aluno/lista-aluno.html">ALUNOS</a>
+        <a href="/pages/livro/lista-livro.html">LIVROS</a>
+        <a href="/pages/emprestimo/lista-emprestimo.html">EMPRESTIMOS</a>
+    </header>
+
+    <main class="conteudo-principal">
+        <div class="div-btn-novo">
+            <a href="/pages/aluno/cadastro-aluno.html">NOVO ALUNO</a>
+        </div>
+        <div class="div-titulo-tabela">
+            <h2>ALUNOS</h2>
+        </div>
+        <div class="div-vazio"></div>
+        <div class="div-tabela">
+            <table class="tabela">
+                <thead>
+                    <tr>
+                        <th>ID ALUNO</th>
+                        <th>RA</th>
+                        <th>NOME</th>
+                        <th>SOBRENOME</th>
+                        <th>DATA NASCIMENTO</th>
+                        <th>ENDEREÇO</th>
+                        <th>EMAIL</th>
+                        <th>CELULAR</th>
+                        <th>AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="/js/aluno.js"></script>
+
+</body>
+
+</html>
