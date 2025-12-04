@@ -58,11 +58,16 @@
                 <!-- Precisa de um valor minimo e maximo de 4 digitos -->
                 <label for="ano-publicacao-livro">
                     ANO PUBLICAÇÃO
-                    <input 
-                    type="number" 
-                    name="ano-publicacao-livro" 
-                    id="ano-publicacao-livro" 
-                    placeholder="Digite o ano de publicação do livro">
+                    <input
+                        type="text"
+                        name="ano-publicacao-livro"
+                        id="ano-publicacao-livro"
+                        placeholder="Digite o ano de publicação do livro (4 dígitos)"
+                        inputmode="numeric"
+                        pattern="\d{4}"
+                        minlength="4"
+                        maxlength="4"
+                        title="Digite um ano com 4 dígitos (ex: 2024)">
                 </label>
 
                 <!-- Nescessita solicitar apenas números e sinal de - -->
@@ -82,6 +87,7 @@
                     name="quantidade-total-livro" 
                     id="quantidade-total-livro" 
                     placeholder="Digite a quantidade total do livro" 
+                    min="1"
                     required>
                 </label>
 
@@ -102,7 +108,8 @@
                     type="number" 
                     name="valor-aquisicao-livro" 
                     id="valor-aquisicao-livro" 
-                    placeholder="Digite o valor de aquisicao do livro">
+                    placeholder="Digite o valor de aquisicao do livro"
+                    min="1">
                 </label>
 
                 <label for="status-livro-emprestado">

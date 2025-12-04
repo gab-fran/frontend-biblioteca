@@ -30,7 +30,7 @@ async function montarTabelaEmprestimos() {
             <td>${emprestimo.tituloLivro}</td>
             <td>${new Date(emprestimo.dataEmprestimo).toLocaleDateString()}</td>
             <td>${new Date(emprestimo.dataDevolucao).toLocaleDateString()}</td>
-            <td>${emprestimo.statusEmprestimo}</td>
+            <td>${emprestimo.statusEmprestimo ? emprestimo.statusEmprestimo : '-'}</td>
             <td>
                    <img src='/assets/editar.svg' alt='Editar aluno' class='btn-edit' />
                    <img src='/assets/deletar.svg' alt='Excluir aluno' class='btn-delete' />

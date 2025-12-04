@@ -29,9 +29,9 @@ async function montarTabelaAlunos() {
             <td>${aluno.ra}</td>
             <td>${aluno.nome}</td>
             <td>${aluno.sobrenome}</td>
-            <td>${new Date(aluno.dataNascimento).toLocaleDateString()}</td>
-            <td>${aluno.endereco}</td>
-            <td>${aluno.email}</td>
+            <td>${aluno.dataNascimento ? new Date(aluno.dataNascimento).toLocaleDateString() : '-'}</td>
+            <td>${aluno.endereco ? aluno.endereco : '-'}</td>
+            <td>${aluno.email ? aluno.email : '-'}</td>
             <td>${aluno.celular}</td>
             <td>
                    <img src='/assets/editar.svg' alt='Editar aluno' class='btn-edit' />
@@ -53,7 +53,7 @@ async function enviarFormularioCadastro(event) {
     const aluno = {
         nome: document.getElementById('nome-aluno').value,
         sobrenome: document.getElementById('sobrenome-aluno').value,
-        dataNascimento: document.getElementById('data-nascimento').value,
+        dataNascimento: document.getElementById('data-nascimento').value || null,
         endereco: document.getElementById('endereco-aluno').value,
         email: document.getElementById('email-aluno').value,
         celular: document.getElementById('celular-aluno').value

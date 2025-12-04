@@ -29,12 +29,12 @@ async function montarTabelaLivros() {
             <td>${livro.titulo}</td>
             <td>${livro.autor}</td>
             <td>${livro.editora}</td>
-            <td>${livro.anoPublicacao}</td>
-            <td>${livro.isbn}</td>
+            <td>${livro.anoPublicacao ? livro.anoPublicacao : '-'}</td>
+            <td>${livro.isbn ? livro.isbn : '-'}</td>
             <td>${livro.quantTotal}</td>
             <td>${livro.quantDisponivel}</td>
-            <td>${livro.valorAquisicao}</td>
-            <td>${livro.statusLivroEmprestado}</td>
+            <td>${livro.valorAquisicao ? `R$ ${livro.valorAquisicao}` : '-'}</td>
+            <td>${livro.statusLivroEmprestado ? livro.statusLivroEmprestado : '-'}</td>
             <td>
                    <img src='/assets/editar.svg' alt='Editar aluno' class='btn-edit' />
                    <img src='/assets/deletar.svg' alt='Excluir aluno' class='btn-delete' />
@@ -60,7 +60,7 @@ async function enviarFormularioCadastro(event) {
         isbn: document.getElementById('isbn-livro').value,
         quantTotal: document.getElementById('quantidade-total-livro').value,
         quantDisponivel: document.getElementById('quantidade-disponivel-livro').value,
-        valorAquisicao: document.getElementById('valor-aquisicao-livro').value,
+        valorAquisicao: document.getElementById('valor-aquisicao-livro').value || null,
         statusLivroEmprestado: document.getElementById('status-livro-emprestado').value
     }
 
