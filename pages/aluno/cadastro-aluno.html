@@ -21,7 +21,7 @@
         </div>
 
         <div class="ctn-formulario">
-            <form action="" method="post">
+            <form onsubmit="enviarFormularioCadastro(event)" action="" method="post" class="form-cadastro">
                 <label for="nome-aluno">
                     Nome *
                     <input 
@@ -81,12 +81,12 @@
                     required>
                 </label>
 
-                <p>* Campos obrigatórios</p>
+                <p style="color: red;">* Campos obrigatórios</p>
                 <input type="submit" value="CADASTRAR">
                 
             </form>
         </div>
     </main>
-
+<script src="/js/aluno.js"></script>
 </body>
 </html>

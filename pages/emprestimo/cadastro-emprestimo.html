@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/css/cadastro.css">
+    <title>BiblioTech - Cadastro de Emprestimos</title>
+</head>
+<body>
+     <header class="cabecalho">
+        <a href="/index.html">ÍNICIO</a>
+        <a href="/pages/aluno/lista-aluno.html">ALUNOS</a>
+        <a href="/pages/livro/lista-livro.html">LIVROS</a>
+        <a href="/pages/emprestimo/lista-emprestimo.html">EMPRESTIMOS</a>
+    </header>
+
+    <main class="conteudo-principal" >
+        <div class="ctn-titulo">
+            <h2>CADASTRO DE EMPRESTIMOS</h2>
+        </div>
+
+        <div class="ctn-formulario">
+            <form onsubmit="enviarFormularioCadastro(event)" action="" method="post" class="form-cadastro">
+                <label for="aluno-emprestimo">
+                    Aluno *
+                    <select name="aluno-emprestimo" id="aluno-emprestimo" required>
+                        <option value=""></option>
+                    </select>
+                </label>
+
+                <label for="livro-emprestimo">
+                    Livro *
+                    <select name="livro-emprestimo" id="livro-emprestimo" required>
+                        <option value=""></option>
+                    </select>
+                </label>
+
+                <label for="data-emprestimo">
+                    Data Emprestimo *
+                    <input 
+                    type="date" 
+                    name="data-emprestimo" 
+                    id="data-emprestimo" 
+                    required>
+                </label>
+
+                <label for="data-devolucao">
+                    Data Devolucao *
+                    <input 
+                    type="date" 
+                    name="data-devolucao" 
+                    id="data-devolucao" 
+                    required>
+                </label>
+
+                <label for="status-emprestimo">
+                    Status Emprestimo
+                    <input 
+                    type="text" 
+                    name="status-emprestimo" 
+                    id="status-emprestimo" 
+                    placeholder="Digite o status do emprestimo">
+                </label>
+
+                <p style="color: red;">* Campos obrigatórios</p>
+                <input type="submit" value="CADASTRAR">
+                
+            </form>
+        </div>
+    </main>
+<script src="/js/emprestimo.js"></script>
+</body>
+</html>

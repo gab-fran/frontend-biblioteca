@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/estilo.css">
-    <link rel="stylesheet" href="/css/listagens.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/estilo.css" />
+    <link rel="stylesheet" href="/css/listagens.css" />
     <title>BiblioTech - Lista de Emprestimos</title>
 </head>
-<body>
-     <header class="cabecalho">
+
+<body onload="montarTabelaEmprestimos()">
+    <header class="cabecalho">
         <a href="/index.html">ÍNICIO</a>
         <a href="/pages/aluno/lista-aluno.html">ALUNOS</a>
         <a href="/pages/livro/lista-livro.html">LIVROS</a>
         <a href="/pages/emprestimo/lista-emprestimo.html">EMPRESTIMOS</a>
     </header>
 
+    <main class="conteudo-principal">
+        <div class="div-btn-novo">
+            <a href="/pages/emprestimo/cadastro-emprestimo.html">NOVO EMPRESTIMO</a>
+        </div>
+        <div class="div-titulo-tabela">
+            <h2>EMPRESTIMOS</h2>
+        </div>
+        <div class="div-vazio"></div>
+        <div class="div-tabela">
+            <table class="tabela">
+                <thead>
+                    <tr>
+                        <th>ID EMPRESTIMO</th>
+                        <th>ALUNO</th></th>
+                        <th>LIVRO</th>
+                        <th>DATA EMPRESTIMO</th>
+                        <th>DATA DEVOLUÇÃO</th>
+                        <th>STATUS</th>
+                        <th>AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
 
+    <script src="/js/emprestimo.js"></script>
 </body>
+
 </html>

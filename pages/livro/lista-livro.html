@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/listagens.css">
     <title>BiblioTech - Lista de Livros</title>
 </head>
-<body>
+<body onload="montarTabelaLivros()">
      <header class="cabecalho">
         <a href="/index.html">ÍNICIO</a>
         <a href="/pages/aluno/lista-aluno.html">ALUNOS</a>
@@ -15,6 +15,38 @@
         <a href="/pages/emprestimo/lista-emprestimo.html">EMPRESTIMOS</a>
     </header>
 
+    <main class="conteudo-principal">
+        <div class="div-btn-novo">
+            <a href="/pages/livro/cadastro-livro.html">NOVO LIVRO</a>
+        </div>
+        <div class="div-titulo-tabela">
+            <h2>LIVROS</h2>
+        </div>
+        <div class="div-vazio"></div>
+        <div class="div-tabela">
+            <table class="tabela">
+                <thead>
+                    <tr>
+                        <th>ID LIVRO</th>
+                        <th>TITULO</th>
+                        <th>AUTOR</th>
+                        <th>EDITORA</th>
+                        <th>ANO PUBLICAÇÃO</th>
+                        <th>ISBN</th>
+                        <th>QUANTIDADE TOTAL</th>
+                        <th>QUANTIDADE DISPONIVEL</th>
+                        <th>VALOR AQUISICAO</th>
+                        <th>STATUS LIVRO EMPRESTADO</th>
+                        <th>AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="/js/livro.js"></script>
 
 </body>
 </html>

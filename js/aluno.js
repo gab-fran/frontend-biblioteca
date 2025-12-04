@@ -46,3 +46,39 @@ async function montarTabelaAlunos() {
 
     });
 }
+
+async function enviarFormularioCadastro(event) {
+    event.preventDefault();
+
+    const aluno = {
+        nome: document.getElementById('nome-aluno').value,
+        sobrenome: document.getElementById('sobrenome-aluno').value,
+        dataNascimento: document.getElementById('data-nascimento').value,
+        endereco: document.getElementById('endereco-aluno').value,
+        email: document.getElementById('email-aluno').value,
+        celular: document.getElementById('celular-aluno').value
+    }
+
+    try {
+        const respostaAPI = await fetch(`${serverURL}`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(aluno)
+        });
+
+        if (!respostaAPI.ok) {
+            alert('Erro ao cadastrar aluno.');
+
+            throw new Error('Erro ao fazer requisição à API.');
+        }
+
+        alert('Aluno cadastrado com sucesso!');
+
+        window.location.href = '../../pages/aluno/lista-aluno.html';
+    } catch (error) {
+        console.error('Erro ao fazer requisição.');
+        return;
+    }
+}
