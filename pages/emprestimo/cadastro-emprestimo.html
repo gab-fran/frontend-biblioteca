@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/cadastro.css">
     <title>BiblioTech - Cadastro de Emprestimos</title>
 </head>
-<body>
+<body onload="definirDatasAutomaticas()">
      <header class="cabecalho">
         <a href="/index.html">ÍNICIO</a>
         <a href="/pages/aluno/lista-aluno.html">ALUNOS</a>
@@ -37,21 +37,21 @@
                 </label>
 
                 <label for="data-emprestimo">
-                    Data Emprestimo *
+                    Data Emprestimo
                     <input 
                     type="date" 
                     name="data-emprestimo" 
                     id="data-emprestimo" 
-                    required>
+                    readonly>
                 </label>
 
                 <label for="data-devolucao">
-                    Data Devolucao *
+                    Data Devolucao
                     <input 
                     type="date" 
                     name="data-devolucao" 
                     id="data-devolucao" 
-                    required>
+                    readonly>
                 </label>
 
                 <label for="status-emprestimo">

@@ -73,3 +73,20 @@ async function removerEmprestimo(emprestimo) {
         return;
     }
 }
+
+function definirDatasAutomaticas() {
+    const hoje = new Date();
+    const dataDevolucao = new Date();
+    dataDevolucao.setDate(hoje.getDate() + 30);
+
+    function formatarData(data) {
+        const ano = data.getFullYear();
+        const mes = String(data.getMonth() + 1).padStart(2, '0');
+        const dia = String(data.getDate()).padStart(2, '0');
+        return `${ano}-${mes}-${dia}`;
+    }
+
+    document.getElementById('data-emprestimo').value = formatarData(hoje);
+    document.getElementById('data-devolucao').value = formatarData(dataDevolucao);
+}
+
