@@ -40,7 +40,36 @@ async function montarTabelaEmprestimos() {
         tbody.appendChild(tr);
 
         tr.querySelector('.btn-edit').addEventListener('click', () => alert('editar'));
-        tr.querySelector('.btn-delete').addEventListener('click', () => alert('deletar'));
+        tr.querySelector('.btn-delete').addEventListener('click', () => {removerEmprestimo(emprestimo)});
 
     });
+}
+
+async function removerEmprestimo(emprestimo) {
+    const confirmacao = confirm(`Deseja mesmo remover o emprestimo: Aluno: ${emprestimo.nomeAluno}, Livro: ${emprestimo.tituloLivro}?`);
+
+    try {
+        if (confirmacao) {
+            const respostaAPI = await fetch(`${serverURL}/${emprestimo.idEmprestimo}`, {
+                method: 'DELETE'
+            });
+
+            if (!respostaAPI.ok) {
+                alert('Erro ao remover emprestimo.');
+
+                console.error('Erro na requisição: ', respostaAPI.status, await respostaAPI.text());
+
+                return;
+            }
+
+            alert('Emprestimo removido com sucesso!');
+
+            window.location.reload();
+        } else {
+            return;
+        }
+    } catch (error) {
+        console.error('Erro ao fazer requisição.');
+        return;
+    }
 }

@@ -41,8 +41,8 @@ async function montarTabelaAlunos() {
 
         tbody.appendChild(tr);
 
-        tr.querySelector('.btn-edit').addEventListener('click', () => alert('editar'));
-        tr.querySelector('.btn-delete').addEventListener('click', () => alert('deletar'));
+        tr.querySelector('.btn-edit').addEventListener('click', () => {window.location.href = `../../pages/aluno/atualizacao-aluno.html?idAluno=${aluno.idAluno}`});
+        tr.querySelector('.btn-delete').addEventListener('click', () => {removerLivro(aluno)});
 
     });
 }
@@ -75,6 +75,110 @@ async function enviarFormularioCadastro(event) {
         }
 
         alert('Aluno cadastrado com sucesso!');
+
+        window.location.href = '../../pages/aluno/lista-aluno.html';
+    } catch (error) {
+        console.error('Erro ao fazer requisição.');
+        return;
+    }
+}
+
+async function removerLivro(aluno) {
+    const confirmacao = confirm(`Deseja mesmo remover o aluno: ${aluno.nome} ${aluno.sobrenome}?`);
+
+    try {
+        if (confirmacao) {
+            const respostaAPI = await fetch(`${serverURL}/${aluno.idAluno}`, {
+                method: 'DELETE'
+            });
+
+            if (!respostaAPI.ok) {
+                alert('Erro ao remover aluno.');
+
+                console.error('Erro na requisição: ', respostaAPI.status, await respostaAPI.text());
+
+                return;
+            }
+
+            alert('Aluno removido com sucesso!');
+
+            window.location.reload();
+        } else {
+            return;
+        }
+    } catch (error) {
+        console.error('Erro ao fazer requisição.');
+        return;
+    }
+}
+
+async function buscarAluno() {
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+
+    const idAluno = urlParams.get('idAluno');
+
+    try {
+        const respostaAPI = await fetch(`${serverURL}/${idAluno}`);
+
+        if (!respostaAPI.ok) {
+            alert('Erro ao buscar aluno.');
+
+            console.error('Erro na requisição: ', respostaAPI.status, await respostaAPI.text());
+        }
+
+        const aluno = await respostaAPI.json();
+
+        preencherFormularioAtualizacao(aluno);
+    } catch (error) {
+        alert('Erro ao buscar informações do aluno.');
+
+        console.error(`Erro ao buscar informações do aluno. ${error}`);
+
+        return;
+    }
+}
+
+function preencherFormularioAtualizacao(aluno) {
+    document.getElementById('id-aluno').value = aluno.idAluno;
+    document.getElementById('nome-aluno').value = aluno.nome;
+    document.getElementById('sobrenome-aluno').value = aluno.sobrenome;
+    document.getElementById('data-nascimento').value = aluno.dataNascimento ? new Date(aluno.dataNascimento).toISOString().split('T')[0] : null;
+    document.getElementById('endereco-aluno').value = aluno.endereco;
+    document.getElementById('email-aluno').value = aluno.email;
+    document.getElementById('celular-aluno').value = aluno.celular;
+}
+
+async function enviarFormularioAtualizacao(event) {
+    event.preventDefault();
+
+    const aluno = {
+        idAluno: document.getElementById('id-aluno').value,
+        nome: document.getElementById('nome-aluno').value,
+        sobrenome: document.getElementById('sobrenome-aluno').value,
+        dataNascimento: document.getElementById('data-nascimento').value || null,
+        endereco: document.getElementById('endereco-aluno').value,
+        email: document.getElementById('email-aluno').value,
+        celular: document.getElementById('celular-aluno').value
+    };
+
+    try {
+        const respostaAPI = await fetch(`${serverURL}/${aluno.idAluno}`, {
+            method: 'PUT', 
+            headers: {
+                'Content-type': 'application/json' 
+            },
+            body: JSON.stringify(aluno) 
+        });
+
+        if (!respostaAPI.ok) {
+            alert('Erro ao atualizar aluno.');
+
+            console.error('Erro na requisição:', respostaAPI.status, await respostaAPI.text());
+        }
+
+        alert('Aluno atualizado com sucesso!');
 
         window.location.href = '../../pages/aluno/lista-aluno.html';
     } catch (error) {

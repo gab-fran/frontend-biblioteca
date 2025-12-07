@@ -43,8 +43,8 @@ async function montarTabelaLivros() {
 
         tbody.appendChild(tr);
 
-        tr.querySelector('.btn-edit').addEventListener('click', () => alert('editar'));
-        tr.querySelector('.btn-delete').addEventListener('click', () => alert('deletar'));
+        tr.querySelector('.btn-edit').addEventListener('click', () => {window.location.href = `../../pages/livro/atualizacao-livro.html?idLivro=${livro.idLivro}`});
+        tr.querySelector('.btn-delete').addEventListener('click', () => {removerLivro(livro)});
 
     });
 }
@@ -80,6 +80,116 @@ async function enviarFormularioCadastro(event) {
         }
 
         alert('Livro cadastrado com sucesso!');
+
+        window.location.href = '../../pages/livro/lista-livro.html';
+    } catch (error) {
+        console.error('Erro ao fazer requisição.');
+        return;
+    }
+}
+
+async function removerLivro(livro) {
+    const confirmacao = confirm(`Deseja mesmo remover o livro: ${livro.titulo}?`);
+
+    try {
+        if (confirmacao) {
+            const respostaAPI = await fetch(`${serverURL}/${livro.idLivro}`, {
+                method: 'DELETE'
+            });
+
+            if (!respostaAPI.ok) {
+                alert('Erro ao remover livro.');
+
+                console.error('Erro na requisição: ', respostaAPI.status, await respostaAPI.text());
+
+                return;
+            }
+
+            alert('Livro removido com sucesso!');
+
+            window.location.reload();
+        } else {
+            return;
+        }
+    } catch (error) {
+        console.error('Erro ao fazer requisição.');
+        return;
+    }
+}
+
+async function buscarLivro() {
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+
+    const idLivro = urlParams.get('idLivro');
+
+    try {
+        const respostaAPI = await fetch(`${serverURL}/${idLivro}`);
+
+        if (!respostaAPI.ok) {
+            alert('Erro ao buscar livro.');
+
+            console.error('Erro na requisição: ', respostaAPI.status, await respostaAPI.text());
+        }
+
+        const livro = await respostaAPI.json();
+
+        preencherFormularioAtualizacao(livro);
+    } catch (error) {
+        alert('Erro ao buscar informações do livro.');
+
+        console.error(`Erro ao buscar informações do livro. ${error}`);
+
+        return;
+    }
+}
+
+function preencherFormularioAtualizacao(livro) {
+    document.getElementById('id-livro').value = livro.idLivro;
+    document.getElementById('titulo-livro').value = livro.titulo;
+    document.getElementById('autor-livro').value = livro.autor;
+    document.getElementById('editora-livro').value = livro.editora;
+    document.getElementById('ano-publicacao-livro').value = livro.anoPublicacao;
+    document.getElementById('isbn-livro').value = livro.isbn;
+    document.getElementById('quantidade-total-livro').value = livro.quantTotal;
+    document.getElementById('quantidade-disponivel-livro').value = livro.quantDisponivel;
+    document.getElementById('valor-aquisicao-livro').value = livro.valorAquisicao;
+    document.getElementById('status-livro-emprestado').value = livro.statusLivroEmprestado;
+}
+
+async function enviarFormularioAtualizacao(event) {
+    event.preventDefault();
+
+    const livro = {
+        idLivro: document.getElementById('id-livro').value,
+        titulo: document.getElementById('titulo-livro').value,
+        autor: document.getElementById('autor-livro').value,
+        editora: document.getElementById('editora-livro').value,
+        anoPublicacao: document.getElementById('ano-publicacao-livro').value,
+        isbn: document.getElementById('isbn-livro').value,
+        quantTotal: document.getElementById('quantidade-total-livro').value,
+        quantDisponivel: document.getElementById('quantidade-disponivel-livro').value,
+        valorAquisicao: document.getElementById('valor-aquisicao-livro').value || null,
+        statusLivroEmprestado: document.getElementById('status-livro-emprestado').value
+    };
+
+    try {
+        const respostaAPI = await fetch(`${serverURL}/${livro.idLivro}`, {
+            method: 'PUT', 
+            headers: {
+                'Content-type': 'application/json' 
+            },
+            body: JSON.stringify(livro) 
+        });
+
+        if (!respostaAPI.ok) {
+            alert('Erro ao atualizar livro.');
+
+            console.error('Erro na requisição:', respostaAPI.status, await respostaAPI.text());
+        }
+
+        alert('Livro atualizado com sucesso!');
 
         window.location.href = '../../pages/livro/lista-livro.html';
     } catch (error) {
